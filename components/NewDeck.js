@@ -6,6 +6,8 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
+import { connect } from "react-redux";
+import { addDeck } from "../actions";
 
 class NewDeck extends Component {
   state = {
@@ -19,7 +21,8 @@ class NewDeck extends Component {
   };
 
   handleSubmit = () => {
-    // TODO: dispatch new Deck event.
+    this.props.dispatch(addDeck(this.state.name));
+    // TODO: Nav to new individual Deck view
   };
 
   render() {
@@ -52,4 +55,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default NewDeck;
+export default connect()(NewDeck);
