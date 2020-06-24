@@ -5,12 +5,11 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 
 class Deck extends Component {
   handleAddCard = () => {
-    // TODO: dispatch new card event
+    const { navigation, deck } = this.props;
+    navigation.navigate("Add", { title: deck.title });
   };
 
-  handleStart = () => {
-    // TODO: dispatch new card event
-  };
+  handleStart = () => {};
 
   render() {
     const { deck } = this.props;

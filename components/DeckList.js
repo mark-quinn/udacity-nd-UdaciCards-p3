@@ -5,7 +5,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 
 class DeckList extends Component {
   handlePress = (title) => {
-    const { navigation } = this.props;    
+    const { navigation } = this.props;
     navigation.navigate("Deck", { title });
   };
 

@@ -10,6 +10,7 @@ import middleware from "./middleware";
 import Deck from "./components/Deck";
 import { setInitialData } from "./utils/api";
 import DeckList from './components/DeckList';
+import AddQuestion from './components/AddQuestion';
 
 const Stack = createStackNavigator();
 
@@ -22,6 +23,7 @@ export default function App() {
           <Stack.Screen name="Home" component={DeckList} />
           <Stack.Screen name="New" component={NewDeck} />
           <Stack.Screen name="Deck" component={Deck} />
+          <Stack.Screen name="Add" component={AddQuestion} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
