@@ -23,14 +23,18 @@ class NewDeck extends Component {
 
   handleSubmit = () => {
     const { title } = this.state;
+    const { navigation } = this.props;
+
+    if (title === null) {
+      return;
+    }
 
     getDeck(title).then((deck) => {
       if (deck === undefined) {
         this.props.dispatch(addDeck(title));
-        saveDeckTitle(title);
+        saveDeckTitle(title).then(() => navigation.navigate("Deck"));
       }
     });
-    // TODO: Nav to new individual Deck view
   };
 
   render() {
