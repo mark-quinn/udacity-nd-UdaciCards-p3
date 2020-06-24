@@ -32,7 +32,9 @@ class NewDeck extends Component {
     getDeck(title).then((deck) => {
       if (deck === undefined) {
         this.props.dispatch(addDeck(title));
-        saveDeckTitle(title).then(() => navigation.navigate("Deck"));
+        saveDeckTitle(title).then(() =>
+          navigation.navigate("Deck", { title })
+        );
       }
       this.setState({
         title: "",
