@@ -12,7 +12,7 @@ import { saveDeckTitle, getDeck } from "../utils/api";
 
 class NewDeck extends Component {
   state = {
-    title: null,
+    title: "",
   };
 
   handleTextChange = (title) => {
@@ -25,7 +25,7 @@ class NewDeck extends Component {
     const { title } = this.state;
     const { navigation } = this.props;
 
-    if (title === null) {
+    if (title === "") {
       return;
     }
 
@@ -34,6 +34,9 @@ class NewDeck extends Component {
         this.props.dispatch(addDeck(title));
         saveDeckTitle(title).then(() => navigation.navigate("Deck"));
       }
+      this.setState({
+        title: "",
+      });
     });
   };
 
@@ -45,6 +48,7 @@ class NewDeck extends Component {
           style={styles.input}
           onChangeText={this.handleTextChange}
           placeholder="Deck Title"
+          value={this.state.title}
         />
         <TouchableOpacity onPress={this.handleSubmit}>
           <Text style={styles.btn}>Submit</Text>
