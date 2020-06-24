@@ -8,20 +8,27 @@ import {
 } from "react-native";
 import { connect } from "react-redux";
 import { addDeck } from "../actions";
+import { saveDeckTitle } from "../utils/api";
 
 class NewDeck extends Component {
   state = {
-    name: null,
+    title: null,
   };
 
-  handleTextChange = (name) => {
+  handleTextChange = (title) => {
     this.setState({
-      name,
+      title,
     });
   };
 
   handleSubmit = () => {
-    this.props.dispatch(addDeck(this.state.name));
+    const { title } = this.state;
+
+    this.props.dispatch(addDeck(title));
+
+    // TODO: if Deck exists, show warning and do not save.
+    saveDeckTitle(title);
+
     // TODO: Nav to new individual Deck view
   };
 
