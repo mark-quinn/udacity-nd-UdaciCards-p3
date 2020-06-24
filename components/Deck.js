@@ -1,12 +1,29 @@
 import React, { Component } from "react";
-import { Text, View } from "react-native";
+import { Text, View, StyleSheet } from "react-native";
 import { connect } from "react-redux";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 class Deck extends Component {
+  handleAddCard = () => {
+    // TODO: dispatch new card event
+  };
+
+  handleStart = () => {
+    // TODO: dispatch new card event
+  };
+
   render() {
+    const { deck } = this.props;
     return (
       <View>
-        <Text>Deck</Text>
+        <Text>{deck.title}</Text>
+        <Text>X cards</Text>
+        <TouchableOpacity onPress={this.handleAddCard}>
+          <Text style={styles.btnAdd}>Add Card</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={this.handleStart}>
+          <Text style={styles.btnStart}>Start Quiz</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -18,5 +35,18 @@ function mapPropsToState(state, { route }) {
     deck,
   };
 }
+
+const styles = StyleSheet.create({
+  btnAdd: {
+    padding: 10,
+    backgroundColor: "#000",
+    color: "#fff",
+  },
+  btnStart: {
+    padding: 10,
+    backgroundColor: "#fff",
+    color: "#000",
+  },
+});
 
 export default connect(mapPropsToState)(Deck);

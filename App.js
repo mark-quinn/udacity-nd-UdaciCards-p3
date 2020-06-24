@@ -8,10 +8,12 @@ import { Provider } from "react-redux";
 import reducer from "./reducers";
 import middleware from "./middleware";
 import Deck from "./components/Deck";
+import { setInitialData } from "./utils/api";
 
 const Stack = createStackNavigator();
 
 export default function App() {
+  setInitialData();
   return (
     <Provider store={createStore(reducer, middleware)}>
       <NavigationContainer>
