@@ -9,6 +9,7 @@ import reducer from "./reducers";
 import middleware from "./middleware";
 import Deck from "./components/Deck";
 import { setInitialData } from "./utils/api";
+import DeckList from './components/DeckList';
 
 const Stack = createStackNavigator();
 
@@ -17,7 +18,8 @@ export default function App() {
   return (
     <Provider store={createStore(reducer, middleware)}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="New">
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen name="Home" component={DeckList} />
           <Stack.Screen name="New" component={NewDeck} />
           <Stack.Screen name="Deck" component={Deck} />
         </Stack.Navigator>
