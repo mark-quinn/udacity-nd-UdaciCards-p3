@@ -7,6 +7,7 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
+import { addQuestion } from "../actions";
 
 class AddQuestion extends Component {
   state = {
@@ -22,10 +23,11 @@ class AddQuestion extends Component {
 
   handleSubmit = () => {
     const { question, answer } = this.state;
-    const { dispatch } = this.props;
+    const { dispatch, deck } = this.props;
 
     if (question && answer) {
       // TODO: dispatch new question event
+      dispatch(addQuestion(deck.title, { question, answer }));
       // TODO: add to local store
       // TODO: nav to Deck
     }
