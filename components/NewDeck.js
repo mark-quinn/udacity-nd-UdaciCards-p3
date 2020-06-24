@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { connect } from "react-redux";
 import { addDeck } from "../actions";
-import { saveDeckTitle } from "../utils/api";
+import { saveDeckTitle, getDeck } from "../utils/api";
 
 class NewDeck extends Component {
   state = {
@@ -24,11 +24,12 @@ class NewDeck extends Component {
   handleSubmit = () => {
     const { title } = this.state;
 
-    this.props.dispatch(addDeck(title));
-
-    // TODO: if Deck exists, show warning and do not save.
-    saveDeckTitle(title);
-
+    getDeck(title).then((deck) => {
+      if (deck === undefined) {
+        this.props.dispatch(addDeck(title));
+        saveDeckTitle(title);
+      }
+    });
     // TODO: Nav to new individual Deck view
   };
 
