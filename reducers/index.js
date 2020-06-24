@@ -8,12 +8,14 @@ function decks(state = setInitialData(), action) {
         ...state,
         [action.title]: {
           title: action.title,
+          questions: [],
         },
       };
     case ADD_QUESTION:
       const { question, answer } = action.question;
       const { title } = action;
 
+      // BUG: appears that this is only adding onto initial state?
       return {
         ...state,
         [title]: {

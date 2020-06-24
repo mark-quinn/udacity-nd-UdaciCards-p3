@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { addQuestion } from "../actions";
+import { addCardToDeck } from "../utils/api";
 
 class AddQuestion extends Component {
   state = {
@@ -23,13 +24,14 @@ class AddQuestion extends Component {
 
   handleSubmit = () => {
     const { question, answer } = this.state;
-    const { dispatch, deck } = this.props;
+    const { dispatch, deck, navigation } = this.props;
 
     if (question && answer) {
-      // TODO: dispatch new question event
       dispatch(addQuestion(deck.title, { question, answer }));
-      // TODO: add to local store
-      // TODO: nav to Deck
+      addCardToDeck(deck.title, { question, answer }).then(() => {
+        this.setState({ question: "", answer: "" });
+        navigation.navigate("Deck", deck.title);
+      });
     }
   };
 
