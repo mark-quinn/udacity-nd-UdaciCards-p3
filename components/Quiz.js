@@ -7,10 +7,15 @@ class Quiz extends Component {
     currentQuestion: 0,
     correctAnswers: 0,
     totalQuestions: this.props.questions.length,
+    displayAnswer: false,
   };
 
-  handleShowAnswer = () => {
-    // TODO: show answer
+  handleToggle = () => {
+    const { displayAnswer } = this.state;
+
+    this.setState({
+      displayAnswer: !displayAnswer,
+    });
   };
 
   handleAnswer = (choice) => {
@@ -21,7 +26,7 @@ class Quiz extends Component {
 
   render() {
     const { deck, questions } = this.props;
-    const { currentQuestion, totalQuestions } = this.state;
+    const { currentQuestion, totalQuestions, displayAnswer } = this.state;
 
     if (questions === []) {
       return <Text>This Deck has no questions</Text>;
@@ -36,9 +41,11 @@ class Quiz extends Component {
         <Text>
           {currentQuestion + 1} / {totalQuestions}
         </Text>
-        <Text>{question.question}</Text>
-        <TouchableOpacity onPress={this.handleShowAnswer}>
-          <Text style={styles.btn}>Show answer</Text>
+        <Text>{displayAnswer ? question.answer : question.question}</Text>
+        <TouchableOpacity onPress={this.handleToggle}>
+          <Text style={styles.btn}>
+            {displayAnswer ? "Show Question" : "Show Answer"}
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => this.handleAnswer("Correct")}>
           <Text style={styles.btnCorrect}>Correct</Text>
