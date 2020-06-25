@@ -4,23 +4,23 @@ import { connect } from "react-redux";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 class Deck extends Component {
-  handleAddCard = () => {
+  handleNav = (option) => {
     const { navigation, deck } = this.props;
-    navigation.navigate("Add", { title: deck.title });
+    navigation.navigate(option, { title: deck.title });
   };
-
-  handleStart = () => {};
 
   render() {
     const { deck } = this.props;
+    const { title, questions } = deck;
+
     return (
       <View>
-        <Text>{deck.title}</Text>
-        <Text>X cards</Text>
-        <TouchableOpacity onPress={this.handleAddCard}>
+        <Text>{title}</Text>
+        <Text>{questions.length}</Text>
+        <TouchableOpacity onPress={() => this.handleNav("Add")}>
           <Text style={styles.btnAdd}>Add Card</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={this.handleStart}>
+        <TouchableOpacity onPress={() => this.handleNav("Quiz")}>
           <Text style={styles.btnStart}>Start Quiz</Text>
         </TouchableOpacity>
       </View>
