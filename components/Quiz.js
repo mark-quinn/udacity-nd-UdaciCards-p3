@@ -19,9 +19,18 @@ class Quiz extends Component {
   };
 
   handleAnswer = (choice) => {
-    console.log(choice);
-    // TODO: currentQuestion + 1
-    // TODO: answer correct + 1
+    const { questions } = this.props;
+    const { currentQuestion } = this.state;
+    const question = questions[currentQuestion];
+    const answer = choice === "Correct" ? true : false;
+
+    this.setState((prevState) => ({
+      currentQuestion: ++prevState.currentQuestion,
+      correctAnswers:
+        answer === question.correct
+          ? ++prevState.correctAnswers
+          : prevState.correctAnswers,
+    }));
   };
 
   render() {
