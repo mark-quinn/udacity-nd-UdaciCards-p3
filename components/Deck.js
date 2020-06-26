@@ -16,7 +16,7 @@ class Deck extends Component {
     return (
       <View>
         <Text>{title}</Text>
-        <Text>{questions.length}</Text>
+        <Text>{questions.length} cards</Text>
         <TouchableOpacity onPress={() => this.handleNav("Add")}>
           <Text style={styles.btnAdd}>Add Card</Text>
         </TouchableOpacity>
