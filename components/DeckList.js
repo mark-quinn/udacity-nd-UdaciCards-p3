@@ -14,9 +14,8 @@ class DeckList extends Component {
     return (
       <View style={styles.container}>
         {decks.map((deck) => (
-          <View style={styles.deck}>
+          <View key={deck.title} style={styles.deck}>
             <TouchableOpacity
-              key={deck.title}
               name={deck.title}
               onPress={() => this.handlePress(deck.title)}
               style={{ alignItems: "center" }}
@@ -43,7 +42,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   cards: {
-    fontWeight: 300,
+    fontWeight: "300",
     color: "#808080",
   },
 });
