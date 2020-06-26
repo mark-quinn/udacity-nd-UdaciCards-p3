@@ -35,13 +35,26 @@ class Quiz extends Component {
 
   render() {
     const { deck, questions } = this.props;
-    const { currentQuestion, totalQuestions, displayAnswer } = this.state;
+    const {
+      currentQuestion,
+      totalQuestions,
+      displayAnswer,
+      correctAnswers,
+    } = this.state;
 
     if (questions === []) {
       return <Text>This Deck has no questions</Text>;
     }
 
-    // TODO: once questions are done show % total of correct
+    if (currentQuestion === totalQuestions) {
+      const score = (correctAnswers / totalQuestions) * 100;
+      return (
+        <View>
+          <Text>You completed the {deck.title} quiz!</Text>
+          <Text>You scored {score}% </Text>
+        </View>
+      );
+    }
 
     const question = questions[currentQuestion];
 
