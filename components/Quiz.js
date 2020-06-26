@@ -42,7 +42,7 @@ class Quiz extends Component {
       correctAnswers,
     } = this.state;
 
-    if (questions === []) {
+    if (questions.length === 0) {
       return <Text>This Deck has no questions</Text>;
     }
 

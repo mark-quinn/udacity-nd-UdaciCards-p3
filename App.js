@@ -20,8 +20,8 @@ export default function App() {
   return (
     <Provider store={createStore(reducer, middleware)}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen name="Home" component={Home} />
+        <Stack.Navigator initialRouteName="Decks">
+          <Stack.Screen name="Decks" component={Home} />
           <Stack.Screen name="New" component={NewDeck} />
           <Stack.Screen name="Deck" component={Deck} />
           <Stack.Screen name="Add" component={AddQuestion} />
