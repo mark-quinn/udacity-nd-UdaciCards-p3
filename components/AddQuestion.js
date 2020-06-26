@@ -7,6 +7,7 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
+import { CheckBox } from "react-native-elements";
 import { addQuestion } from "../actions";
 import { addCardToDeck } from "../utils/api";
 
@@ -14,6 +15,7 @@ class AddQuestion extends Component {
   state = {
     question: "",
     answer: "",
+    checked: false,
   };
 
   handleTextChange = (name) => {
@@ -23,11 +25,11 @@ class AddQuestion extends Component {
   };
 
   handleSubmit = () => {
-    const { question, answer } = this.state;
+    const { question, answer, checked } = this.state;
     const { dispatch, deck, navigation } = this.props;
 
     if (question && answer) {
-      dispatch(addQuestion(deck.title, { question, answer }));
+      dispatch(addQuestion(deck.title, { question, answer, checked }));
       addCardToDeck(deck.title, { question, answer }).then(() => {
         this.setState({ question: "", answer: "" });
         navigation.navigate("Deck", deck.title);
@@ -49,6 +51,11 @@ class AddQuestion extends Component {
           onChangeText={this.handleTextChange("answer")}
           placeholder="Answer"
           value={this.state.answer}
+        />
+        <CheckBox
+          title="Answer is true?"
+          checked={this.state.checked}
+          onPress={() => this.setState({ checked: !this.state.checked })}
         />
         <TouchableOpacity onPress={this.handleSubmit}>
           <Text style={styles.btn}>Submit</Text>

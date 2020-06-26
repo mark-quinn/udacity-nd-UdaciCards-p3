@@ -12,15 +12,14 @@ function decks(state = setInitialData(), action) {
         },
       };
     case ADD_QUESTION:
-      const { question, answer } = action.question;
+      const { question, answer, checked } = action.question;
       const { title } = action;
 
-      // BUG: appears that this is only adding onto initial state?
       return {
         ...state,
         [title]: {
           ...state[title],
-          questions: [...state[title].questions, { answer, question }],
+          questions: [...state[title].questions, { answer, question, correct: checked }],
         },
       };
     default:
