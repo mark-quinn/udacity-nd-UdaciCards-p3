@@ -43,15 +43,21 @@ class Quiz extends Component {
     } = this.state;
 
     if (questions.length === 0) {
-      return <Text>This Deck has no questions</Text>;
+      return (
+        <View style={styles.container}>
+          <Text style={styles.empty}>Sorry! This Deck has no questions</Text>
+        </View>
+      );
     }
 
     if (currentQuestion === totalQuestions) {
       const score = (correctAnswers / totalQuestions) * 100;
       return (
-        <View>
-          <Text>You completed the {deck.title} quiz!</Text>
-          <Text>You scored {score}% </Text>
+        <View style={styles.container}>
+          <Text style={styles.completed}>
+            You completed the {deck.title} quiz!
+          </Text>
+          <Text style={styles.score}>You scored {score}% </Text>
         </View>
       );
     }
@@ -59,13 +65,15 @@ class Quiz extends Component {
     const question = questions[currentQuestion];
 
     return (
-      <View>
-        <Text>
+      <View style={styles.container}>
+        <Text style={{ alignSelf: "flex-start" }}>
           {currentQuestion + 1} / {totalQuestions}
         </Text>
-        <Text>{displayAnswer ? question.answer : question.question}</Text>
+        <Text style={styles.text}>
+          {displayAnswer ? question.answer : question.question}
+        </Text>
         <TouchableOpacity onPress={this.handleToggle}>
-          <Text style={styles.btn}>
+          <Text style={styles.toggle}>
             {displayAnswer ? "Show Question" : "Show Answer"}
           </Text>
         </TouchableOpacity>
@@ -81,16 +89,54 @@ class Quiz extends Component {
 }
 
 const styles = StyleSheet.create({
-  btn: {
+  container: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  text: {
+    fontWeight: "bold",
+    fontSize: 35,
+    textAlign: "center",
+    marginHorizontal: 15,
+  },
+  toggle: {
     color: "#8B0000",
+    marginVertical: 10,
   },
   btnCorrect: {
-    color: "#000",
+    color: "#fff",
     backgroundColor: "#008000",
+    paddingHorizontal: 30,
+    paddingVertical: 10,
+    marginVertical: 5,
+    borderRadius: 4,
+    alignSelf: "flex-end",
+    textAlign: "center",
   },
   btnIncorrect: {
-    color: "#000",
+    color: "#fff",
     backgroundColor: "#8B0000",
+    paddingHorizontal: 30,
+    paddingVertical: 10,
+    borderRadius: 4,
+    alignSelf: "flex-end",
+    textAlign: "center",
+  },
+  completed: {
+    fontSize: 30,
+    fontWeight: "bold",
+    marginHorizontal: 10,
+    textAlign: "center",
+  },
+  score: {
+    fontSize: 20,
+    textAlign: "center",
+  },
+  empty: {
+    fontSize: 20,
+    fontStyle: "italic",
+    textAlign: "center",
+    marginHorizontal: 10,
   },
 });
 
