@@ -33,6 +33,13 @@ class Quiz extends Component {
     }));
   };
 
+  handleReset = () => {
+    this.setState({
+      currentQuestion: 0,
+      correctAnswers: 0,
+    });
+  };
+
   render() {
     const { deck, questions } = this.props;
     const {
@@ -58,6 +65,9 @@ class Quiz extends Component {
             You completed the {deck.title} quiz!
           </Text>
           <Text style={styles.score}>You scored {score}% </Text>
+          <TouchableOpacity onPress={this.handleReset}>
+            <Text style={styles.btnCorrect}>Try again?</Text>
+          </TouchableOpacity>
         </View>
       );
     }
