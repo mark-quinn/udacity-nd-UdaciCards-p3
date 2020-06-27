@@ -32,9 +32,7 @@ class NewDeck extends Component {
     getDeck(title).then((deck) => {
       if (deck === undefined) {
         this.props.dispatch(addDeck(title));
-        saveDeckTitle(title).then(() =>
-          navigation.navigate("Deck", { title })
-        );
+        saveDeckTitle(title).then(() => navigation.navigate("Deck", { title }));
       }
       this.setState({
         title: "",
@@ -44,8 +42,8 @@ class NewDeck extends Component {
 
   render() {
     return (
-      <View>
-        <Text>What is the title of your new deck?</Text>
+      <View style={styles.container}>
+        <Text style={styles.text}>What is the title of your new deck?</Text>
         <TextInput
           style={styles.input}
           onChangeText={this.handleTextChange}
@@ -61,15 +59,25 @@ class NewDeck extends Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    alignItems: "center",
+    alignContent: "center",
+  },
   input: {
     height: 40,
     borderColor: "#000",
     borderWidth: 1,
+    marginVertical: 20,
   },
   btn: {
     padding: 10,
     backgroundColor: "#000",
     color: "#fff",
+  },
+  text: {
+    textAlign: "center",
+    fontSize: 30,
+    fontWeight: "bold",
   },
 });
 

@@ -39,7 +39,7 @@ class AddQuestion extends Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <TextInput
           style={styles.input}
           onChangeText={this.handleTextChange("question")}
@@ -56,6 +56,7 @@ class AddQuestion extends Component {
           title="Answer is true?"
           checked={this.state.checked}
           onPress={() => this.setState({ checked: !this.state.checked })}
+          containerStyle={{ backgroundColor: "#F0F0F0" }}
         />
         <TouchableOpacity onPress={this.handleSubmit}>
           <Text style={styles.btn}>Submit</Text>
@@ -66,10 +67,16 @@ class AddQuestion extends Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    alignContent: "center",
+    alignItems: "center",
+    paddingTop: 20,
+  },
   input: {
     height: 40,
     borderColor: "#000",
     borderWidth: 1,
+    marginVertical: 5,
   },
   btn: {
     padding: 10,
