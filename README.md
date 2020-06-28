@@ -1,4 +1,4 @@
-# Project Title
+# Udaci Cards
 
 This project is the final project for the Udacity React nanodegree. It is a simple mobile Quiz app which has the essential features for creating questions and collections(decks) of quiz questions.
 
